@@ -71,6 +71,22 @@ body {
 .hero-image:hover {
     transform: translateY(-8px);
 }
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding: 80px 20px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .intro {
+        font-size: 18px;
+    }
+}
 
 a {
     background-color: transparent;
