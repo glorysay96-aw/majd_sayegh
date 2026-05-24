@@ -236,3 +236,25 @@ svg:not(:root) {
         max-width: 100px;
     }
 }
+.hero-button {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 16px 32px;
+
+    background: #111827;
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 14px;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.hero-button:hover {
+    background: #1f2937;
+    transform: translateY(-2px);
+}
