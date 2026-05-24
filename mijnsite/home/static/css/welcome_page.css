@@ -276,3 +276,44 @@ svg:not(:root) {
     background: #1f2937;
     transform: translateY(-2px);
 }
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.6);
+
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 320px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+
+.close {
+    font-size: 28px;
+    cursor: pointer;
+    color: #ef4444; /* rood */
+    float: right;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.close:hover {
+    color: #b91c1c; /* donker rood */
+}
+.contact-wrapper {
+    position: relative;
+    display: inline-block;
+}

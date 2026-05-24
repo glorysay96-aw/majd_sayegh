@@ -15,10 +15,19 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+     
+    contact_info = models.ForeignKey(
+        "home.ContactInfo",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
         FieldPanel("hero_image"),
+        FieldPanel("contact_info"),
     ]
 
 class ErvaringenPage(Page):
