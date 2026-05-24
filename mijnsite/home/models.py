@@ -19,3 +19,10 @@ class HomePage(Page):
         FieldPanel("intro"),
         FieldPanel("hero_image"),
     ]
+
+class ErvaringenPage(Page):
+    tekst = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("tekst"),
+    ]
