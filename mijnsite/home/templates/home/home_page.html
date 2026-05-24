@@ -12,6 +12,20 @@ Delete the line below if you're just getting started and want to remove the welc
 {% endblock extra_css %}
 
 {% block content %}
+<div class="hero">
+
+    <h1>{{ page.title }}</h1>
+
+    <div>
+        {{ page.intro|richtext }}
+    </div>
+
+    {% if page.hero_image %}
+        {% image page.hero_image original as hero %}
+        <img src="{{ hero.url }}" alt="{{ hero.alt }}">
+    {% endif %}
+
+</div>
 
 {% comment %}
 Delete the line below if you're just getting started and want to remove the welcome screen!
