@@ -23,11 +23,13 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name="+"
     )
+    reviews = models.ManyToManyField("home.Review", blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
         FieldPanel("hero_image"),
         FieldPanel("contact_info"),
+        FieldPanel("reviews"),
     ]
 
 class ErvaringenPage(Page):
@@ -49,3 +51,24 @@ class ContactInfo(models.Model):
 
     def __str__(self):
         return "Contact informatie"   
+    
+
+class Review(models.Model):
+    name = models.CharField(max_length=100)
+    text = models.TextField()
+
+    panels = [
+        FieldPanel("name"),
+        FieldPanel("text"),
+    ]
+
+    def __str__(self):
+        return self.name    
+    
+
+class ReviewPage(Page):
+    intro = models.TextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel("intro"),
+    ]    

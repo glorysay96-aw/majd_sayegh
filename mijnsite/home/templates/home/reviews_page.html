@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Feedback</h1>
+
+<h2>Laat een review achter</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Plaats review</button>
+</form>
+
+<h2>feedback bezoekers</h2>
+
+{% for review in reviews %}
+    <div class="review-card">
+        <h3>{{ review.name }}</h3>
+        <p>{{ review.text }}</p>
+    </div>
+{% empty %}
+    <p>Geen reviews nog</p>
+{% endfor %}
+
+{% endblock %}
