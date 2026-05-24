@@ -26,4 +26,23 @@
 
 </div>
 
+{% with contact=contactinfo.objects.first %}
+
+<button class="hero-button" onclick="openModal()">
+    Contact
+</button>
+
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+
+        <h2>Contact</h2>
+
+        <p>Email: {{ contact.email }}</p>
+        <p>Telefoon: {{ contact.phone_number }}</p>
+    </div>
+</div>
+
+{% endwith %}
+
 {% endblock content %}
