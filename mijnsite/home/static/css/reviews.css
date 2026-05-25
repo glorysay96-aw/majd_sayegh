@@ -1,0 +1,176 @@
+body {
+    background: #f5f7fb;
+    font-family: 'Inter', sans-serif;
+    color: #111827;
+}
+
+/* PAGE */
+
+.reviews-page {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    padding: 100px 20px;
+}
+
+/* TITLES */
+
+.reviews-page h1 {
+    font-size: 64px;
+    font-weight: 800;
+
+    margin-bottom: 50px;
+
+    text-align: center;
+}
+
+.reviews-page h2 {
+    font-size: 30px;
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+/* FORM */
+
+.review-form-box {
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 24px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    margin-bottom: 70px;
+}
+
+.review-form p {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 20px;
+}
+
+.review-form label {
+    margin-bottom: 10px;
+
+    font-weight: 600;
+}
+
+.review-form input,
+.review-form textarea {
+    padding: 16px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 14px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+    border-color: #111827;
+
+    box-shadow: 0 0 0 4px rgba(17,24,39,0.1);
+}
+
+.review-form textarea {
+    min-height: 140px;
+
+    resize: vertical;
+}
+
+/* BUTTON */
+
+.review-form button {
+    margin-top: 10px;
+
+    background: #111827;
+    color: white;
+
+    border: none;
+
+    padding: 16px 28px;
+
+    border-radius: 14px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.review-form button:hover {
+    background: #1f2937;
+
+    transform: translateY(-2px);
+}
+
+/* REVIEWS */
+
+.reviews-grid {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 25px;
+}
+
+.review-card {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    transition: 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-6px);
+}
+
+.review-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+
+    margin-bottom: 14px;
+}
+
+.review-card p {
+    color: #4b5563;
+
+    line-height: 1.7;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .reviews-page {
+        padding: 60px 16px;
+    }
+
+    .reviews-page h1 {
+        font-size: 40px;
+    }
+
+    .reviews-page h2 {
+        font-size: 24px;
+    }
+
+    .review-form-box {
+        padding: 24px;
+    }
+
+}
