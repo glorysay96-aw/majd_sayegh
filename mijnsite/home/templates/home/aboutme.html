@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+
+
+<!-- MODAL -->
+<div id="aboutModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close"
+              onclick="document.getElementById('aboutModal').style.display='none'">
+            &times;
+        </span>
+
+        <h2>Over mij</h2>
+
+        <div>
+            {{ page.about_text|richtext }}
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

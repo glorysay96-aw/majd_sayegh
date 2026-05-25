@@ -17,7 +17,7 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-     
+    about_text = RichTextField(blank=True) 
     contact_info = models.ForeignKey(
         "home.ContactInfo",
         null=True,
@@ -32,6 +32,7 @@ class HomePage(Page):
         FieldPanel("hero_image"),
         FieldPanel("contact_info"),
         FieldPanel("reviews"),
+        FieldPanel("about_text"),
     ]
 
 class ErvaringenPage(Page):

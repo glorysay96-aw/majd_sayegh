@@ -6,6 +6,7 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
 <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+<link rel="stylesheet" href="{% static 'css/contact_modal.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
@@ -29,14 +30,20 @@
     Contact
 </button>
 </div>
+{% if page.hero_image %}
+    {% image page.hero_image original as hero %}
 
-    {% if page.hero_image %}
-        {% image page.hero_image original as hero %}
-        <img src="{{ hero.url }}" alt="{{ hero.alt }}" class="hero-image">
-    {% endif %}
-
+    <img 
+        src="{{ hero.url }}"
+        alt="{{ hero.alt }}"
+        class="hero-image"
+        onclick="document.getElementById('aboutModal').style.display='flex'"
+        style="cursor:pointer;"
+    >
+{% endif %}
 
 </div>
 {% include "home/contact_modal.html" %}
+{% include "home/aboutme.html" %}
 
 {% endblock content %}
