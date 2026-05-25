@@ -3,6 +3,8 @@ from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 from wagtail.models import Page
 from wagtail.snippets.models import register_snippet
+from wagtail.embeds.blocks import EmbedBlock
+from wagtail.fields import StreamField
 
 
 class HomePage(Page):
@@ -35,10 +37,15 @@ class HomePage(Page):
 class ErvaringenPage(Page):
     tekst = RichTextField(blank=True)
 
+    video = models.URLField(
+        blank=True,
+        help_text="Plak hier een YouTube link"
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel("tekst"),
+        FieldPanel("video"),
     ]
-
 @register_snippet
 class ContactInfo(models.Model):
     email = models.EmailField()

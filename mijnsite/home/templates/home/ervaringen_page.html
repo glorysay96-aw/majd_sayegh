@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailembeds_tags %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
@@ -14,6 +14,12 @@
     <div class="intro">
         {{ page.tekst|richtext }}
     </div>
+
+    {% if page.video %}
+        <div class="video-wrapper">
+            {% embed page.video %}
+        </div>
+    {% endif %}
 
 </div>
 
