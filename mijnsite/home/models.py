@@ -49,16 +49,28 @@ class ErvaringenPage(Page):
 @register_snippet
 class ContactInfo(models.Model):
     email = models.EmailField()
+
     phone_number = models.CharField(max_length=20)
+
+    address = models.CharField(
+        max_length=255,
+        blank=True
+    )
+
+    google_maps_url = models.URLField(
+        blank=True,
+        help_text="Plak hier Google Maps embed link"
+    )
 
     panels = [
         FieldPanel("email"),
         FieldPanel("phone_number"),
+        FieldPanel("address"),
+        FieldPanel("google_maps_url"),
     ]
 
     def __str__(self):
-        return "Contact informatie"   
-    
+        return "Contact informatie"
 
 class Review(models.Model):
     name = models.CharField(max_length=100)

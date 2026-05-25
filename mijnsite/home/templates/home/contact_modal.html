@@ -1,4 +1,5 @@
 
+
 <div id="contactModal" class="modal">
 
     <div class="modal-content">
@@ -9,10 +10,30 @@
         </span>
 
         <h2>Contact</h2>
-    
 
         <p>Email: {{ page.contact_info.email }}</p>
+
         <p>Telefoon: {{ page.contact_info.phone_number }}</p>
+
+        {% if page.contact_info.address %}
+            <p>{{ page.contact_info.address }}</p>
+        {% endif %}
+
+        {% if page.contact_info.google_maps_url %}
+            <div class="map-wrapper">
+
+
+               <iframe
+                src="{{ page.contact_info.google_maps_url }}"
+                 width="100%"
+                 height="180"
+                  style="border:0;"
+                 loading="lazy"
+                 allowfullscreen>
+                 </iframe>
+
+            </div>
+        {% endif %}
 
     </div>
 
