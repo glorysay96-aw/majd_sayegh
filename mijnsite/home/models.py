@@ -27,6 +27,10 @@ class HomePage(Page):
     )
     reviews = models.ManyToManyField("home.Review", blank=True)
     fb = models.URLField(blank=True, help_text="Plak hier de Facebook link")
+    wa = models.URLField(
+    blank=True,
+    help_text="WhatsApp link"
+)
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
@@ -35,6 +39,7 @@ class HomePage(Page):
         FieldPanel("reviews"),
         FieldPanel("about_text"),
         FieldPanel("fb"),
+        FieldPanel("wa"),
     ]
 
 class ErvaringenPage(Page):
