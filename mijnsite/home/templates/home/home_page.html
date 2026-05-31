@@ -17,12 +17,13 @@
     <div>
         {{ page.intro|richtext }}
     </div>
-    <a href="https://www.facebook.com/mjed.sayegh"
-   target="_blank">
+  {% if page.fb %}
+<a href="{{ page.fb }}" target="_blank">
     <img src="{% static 'images/facebook.png' %}"
          alt="Facebook"
          width="40">
 </a>
+{% endif %}
     <a href="/ervaringen/" class="hero-button">
     Ervaringen
 </a>
