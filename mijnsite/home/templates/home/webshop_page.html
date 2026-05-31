@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+
+<h1>{{ page.title }}</h1>
+<p class="page-intro">{{ page.intro }}</p>
+
+<div class="webshop-container">
+
+{% for product in page.products.all %}
+<div class="product">
+
+    {% if product.afbeelding %}
+        {% image product.afbeelding fill-300x300 as img %}
+        <img src="{{ img.url }}" alt="{{ product.naam }}">
+    {% endif %}
+
+    <h3>{{ product.naam }}</h3>
+    <p>{{ product.beschrijving }}</p>
+    <strong>€ {{ product.prijs }}</strong>
+
+    <br><br>
+
+    <a href="mailto:glory.say.96@gmail.com?subject=Bestelling%20{{ product.naam }}&body=Ik%20wil%20dit%20bestellen:%20{{ product.naam }}%0APrijs:%20€{{ product.prijs }}">
+        <button>Bestellen</button>
+    </a>
+
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

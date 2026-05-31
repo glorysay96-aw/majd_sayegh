@@ -5,6 +5,7 @@ from wagtail.models import Page
 from wagtail.snippets.models import register_snippet
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.fields import StreamField
+from modelcluster.fields import ParentalManyToManyField
 
 
 class HomePage(Page):
@@ -31,6 +32,10 @@ class HomePage(Page):
     blank=True,
     help_text="WhatsApp link"
 )
+    products = models.ManyToManyField(
+    "home.Product",
+    blank=True
+)    
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
@@ -40,6 +45,7 @@ class HomePage(Page):
         FieldPanel("about_text"),
         FieldPanel("fb"),
         FieldPanel("wa"),
+        FieldPanel("products"),
     ]
 
 class ErvaringenPage(Page):
@@ -99,3 +105,40 @@ class ReviewPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
     ]    
+@register_snippet
+class Product(models.Model):
+    naam = models.CharField(max_length=100)
+    prijs = models.DecimalField(max_digits=8, decimal_places=2)
+    beschrijving = models.TextField(blank=True)
+
+    afbeelding = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+
+    panels = [
+        FieldPanel("naam"),
+        FieldPanel("prijs"),
+        FieldPanel("beschrijving"),
+        FieldPanel("afbeelding"),
+    ]
+
+    def __str__(self):
+        return self.naam
+
+class WebshopPage(Page):
+    intro = models.TextField(blank=True)
+
+    products = models.ManyToManyField(
+        "home.Product",
+        blank=True
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel("intro"),
+        FieldPanel("products"),
+    ]
+
