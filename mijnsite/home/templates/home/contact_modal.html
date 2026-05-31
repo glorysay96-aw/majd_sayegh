@@ -1,4 +1,4 @@
-
+{% load static %}
 
 <div id="contactModal" class="modal">
 
@@ -10,6 +10,7 @@
         </span>
 
         <h2>Contact</h2>
+        
 
         <p>Email: {{ page.contact_info.email }}</p>
 
@@ -33,6 +34,13 @@
                  </iframe>
 
             </div>
+        {% endif %}
+          {% if page.fb %}
+        <a href="{{ page.fb }}" target="_blank">
+        <img src="{% static 'images/facebook.png' %}"
+         alt="Facebook"
+         width="40">
+        </a>
         {% endif %}
 
     </div>
