@@ -132,7 +132,7 @@ class Product(models.Model):
 class WebshopPage(Page):
     intro = models.TextField(blank=True)
 
-    products = models.ManyToManyField(
+    products = ParentalManyToManyField(
         "home.Product",
         blank=True
     )
@@ -141,4 +141,24 @@ class WebshopPage(Page):
         FieldPanel("intro"),
         FieldPanel("products"),
     ]
+class Cart(models.Model):
+    session_key = models.CharField(max_length=100)
 
+    def totaal(self):
+        return sum(item.totaal() for item in self.items.all())
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(
+        Cart,
+        on_delete=models.CASCADE,
+        related_name="items"
+    )
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    aantal = models.PositiveIntegerField(default=1)
+
+    def totaal(self):
+        return self.product.prijs * self.aantal
+
+  

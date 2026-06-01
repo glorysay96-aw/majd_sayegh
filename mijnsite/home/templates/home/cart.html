@@ -1,0 +1,22 @@
+<h1>Winkelmand</h1>
+
+{% for product in products %}
+    <div>
+        <h3>{{ product.naam }}</h3>
+        <p>Aantal: {{ product.qty }}</p>
+        <p>Subtotaal: €{{ product.subtotal }}</p>
+        <a href="{% url 'remove_from_cart' product.id %}">
+    <button style="background:red;color:white;">
+        Verwijderen
+    </button>
+</a>
+    </div>
+{% endfor %}
+
+<hr>
+
+<h2>Totaal: €{{ totaal }}</h2>
+
+<a href="mailto:glory.say.96@gmail.com?subject=Bestelling&body=Ik%20wil%20bestellen">
+    <button>Afrekenen via mail</button>
+</a>

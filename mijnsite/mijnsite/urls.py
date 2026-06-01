@@ -9,6 +9,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 from django.urls import path
 from home.views import review_page
+from django.urls import path
+from home import views
 
 
 
@@ -18,6 +20,9 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     path("reviews/", review_page, name="reviews"),
+    path("cart/", views.cart_view, name="cart"),
+    path("add/<int:product_id>/", views.add_to_cart, name="add_to_cart"),
+    path("remove/<int:product_id>/", views.remove_from_cart, name="remove_from_cart"),
 ]
 
 
