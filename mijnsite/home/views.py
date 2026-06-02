@@ -5,6 +5,8 @@ from home.models import Product
 from django.conf import settings
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from mollie.api.client import Client
+
 
 
 def review_page(request):
@@ -93,10 +95,26 @@ def checkout(request):
 
 def start_mollie_payment(request):
     try:
-        import mollie
-        return HttpResponse("Mollie exists")
+        client = Client()
+        client.set_api_key(settings.MOLLIE_API_KEY)
+
+        payment = client.payments.create({
+            "amount": {
+                "currency": "EUR",
+                "value": "1.00"
+            },
+            "description": "Webshop bestelling",
+            "redirectUrl": "https://majdsayegh.nl/payment/success/",
+        })
+
+        if not payment or not hasattr(payment, "checkout_url"):
+            return HttpResponse("Mollie error: no checkout URL")
+
+        return redirect(payment.checkout_url)
+
     except Exception as e:
-        return HttpResponse(str(e))
+        return HttpResponse(f"Mollie error: {str(e)}")
+
 
 def payment_success(request):
     return HttpResponse("🎉 Betaling geslaagd!")
