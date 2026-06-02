@@ -95,11 +95,25 @@ def checkout(request):
 def start_mollie_payment(request):
     try:
         from mollie.api.client import Client
+        from django.conf import settings
+        from django.shortcuts import redirect
+
+        mollie = Client()
+        mollie.set_api_key(settings.MOLLIE_API_KEY)
+
+        payment = mollie.payments.create({
+            "amount": {
+                "currency": "EUR",
+                "value": "1.00"
+            },
+            "description": "Webshop bestelling",
+            "redirectUrl": "https://majdsayegh.nl/payment/success/",
+        })
+
+        return redirect(payment.checkout_url)
+
     except Exception as e:
         return HttpResponse(f"Mollie error: {e}")
-
-    mollie = Client()
-
 
 
 def payment_success(request):
