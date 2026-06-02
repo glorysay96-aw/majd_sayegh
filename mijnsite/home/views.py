@@ -6,6 +6,7 @@ from django.conf import settings
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.http import HttpResponse, HttpResponseRedirect
+from mollie.api.client import Client
 
 
 def review_page(request):
@@ -91,8 +92,6 @@ def checkout(request):
             "totaal": totaal,
         },
     )   
-from django.http import HttpResponse, HttpResponseRedirect
-from mollie.api.client import Client
 
 def start_mollie_payment(request):
     try:
