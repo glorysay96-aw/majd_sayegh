@@ -104,7 +104,7 @@ def start_mollie_payment(request):
                 "value": "10.00",
             },
             "description": "Bestelling webshop",
-            "redirectUrl": "https://majdsayegh.nl/betaling/success/",
+            "redirectUrl": "https://majdsayegh.nl/payment/success/",
         })
 
         return HttpResponseRedirect(payment.checkout_url)
