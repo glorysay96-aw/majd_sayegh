@@ -108,7 +108,7 @@ def start_mollie_payment(request):
         })
 
         if not payment or not hasattr(payment, "checkout_url"):
-            return HttpResponse("Mollie error: no checkout URL")
+            return HttpResponse("www.mollie.com/checkout")
 
         return redirect(payment.checkout_url)
 
