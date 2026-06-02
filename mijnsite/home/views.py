@@ -4,7 +4,6 @@ from .models import Review
 from home.models import Product
 from django.conf import settings
 from django.shortcuts import redirect
-from mollie.api.client import Client
 from django.http import HttpResponse
 
 
@@ -94,6 +93,7 @@ def checkout(request):
 
 
 def start_mollie_payment(request):
+    from mollie.api.client import Client
     mollie = Client()
     mollie.set_api_key(settings.MOLLIE_API_KEY)
 
