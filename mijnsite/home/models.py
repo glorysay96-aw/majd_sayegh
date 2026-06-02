@@ -160,5 +160,3 @@ class CartItem(models.Model):
 
     def totaal(self):
         return self.product.prijs * self.aantal
-
-  
