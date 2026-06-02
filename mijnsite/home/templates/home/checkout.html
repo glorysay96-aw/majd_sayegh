@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h1>Checkout</h1>
+
+{% for item in producten %}
+    <div>
+        <h3>{{ item.product.naam }}</h3>
+
+        <p>
+            {{ item.aantal }} × € {{ item.product.prijs }}
+        </p>
+
+        <strong>
+            € {{ item.subtotaal }}
+        </strong>
+    </div>
+{% endfor %}
+
+<hr>
+
+<h2>Totaal: € {{ totaal }}</h2>
+
+<a href="{% url 'start_mollie_payment' %}">
+    <button>
+        💳 Betaal met iDEAL
+    </button>
+</a>
+
+
+{% endblock %}

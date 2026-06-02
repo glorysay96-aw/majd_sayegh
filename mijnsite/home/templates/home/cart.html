@@ -16,7 +16,8 @@
 <hr>
 
 <h2>Totaal: €{{ totaal }}</h2>
-
-<a href="mailto:glory.say.96@gmail.com?subject=Bestelling&body=Ik%20wil%20bestellen">
-    <button>Afrekenen via mail</button>
+<a href="{% url 'checkout' %}">
+    <button class="checkout-button">
+        💳 Afrekenen
+    </button>
 </a>

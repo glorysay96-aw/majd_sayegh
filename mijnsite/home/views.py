@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect
 from .forms import ReviewForm
 from .models import Review
 from home.models import Product
+from django.conf import settings
+from django.shortcuts import redirect
+from mollie.api.client import Client
+from django.http import HttpResponse
+
 
 def review_page(request):
     form = ReviewForm()
@@ -59,3 +64,51 @@ def remove_from_cart(request, product_id):
     request.session["cart"] = cart
 
     return redirect("cart")
+
+def checkout(request):
+    cart = request.session.get("cart", {})
+
+    producten = []
+    totaal = 0
+
+    for product_id, aantal in cart.items():
+        product = Product.objects.get(id=product_id)
+
+        subtotaal = product.prijs * aantal
+        totaal += subtotaal
+
+        producten.append({
+            "product": product,
+            "aantal": aantal,
+            "subtotaal": subtotaal,
+        })
+
+    return render(
+        request,
+        "home/checkout.html",
+        {
+            "producten": producten,
+            "totaal": totaal,
+        },
+    )   
+
+
+def start_mollie_payment(request):
+    mollie = Client()
+    mollie.set_api_key(settings.MOLLIE_API_KEY)
+
+    payment = mollie.payments.create({
+           "amount": {
+            "currency": "EUR",
+            "value": "1.00"
+        },
+       
+        "description": "Webshop bestelling",
+        "redirectUrl": "https://majdsayegh.nl/payment/success/",
+    })
+
+    return redirect(payment.checkout_url)
+
+
+def payment_success(request):
+    return HttpResponse("🎉 Betaling geslaagd!")
