@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags i18n %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -59,7 +59,26 @@
          width="40">
 </a>
 {% endif %}
+{% load i18n %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ request.path }}">
+
+    {% if LANGUAGE_CODE == "nl" %}
+        <input name="language" type="hidden" value="en">
+        <button type="submit" class="hero-button">
+            English
+        </button>
+    {% else %}
+        <input name="language" type="hidden" value="nl">
+        <button type="submit" class="hero-button">
+            Nederlands
+        </button>
+    {% endif %}
+</form>
 </div>
 {% include "home/contact_modal.html" %}
 {% include "home/aboutme.html" %}

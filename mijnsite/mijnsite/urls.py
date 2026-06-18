@@ -9,12 +9,17 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 from django.urls import path
 from home.views import review_page
-from django.urls import path
+from django.urls import include, path
 from home import views
+from django.conf.urls.i18n import i18n_patterns
+
+
+
 
 
 
 urlpatterns = [
+    path("i18n/", include("django.conf.urls.i18n")),
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
@@ -26,8 +31,12 @@ urlpatterns = [
     path("checkout/", views.checkout, name="checkout"),
     path("betaling/start/", views.start_mollie_payment, name="start_mollie_payment"),
     path("payment/success/", views.payment_success, name="payment_success"),
+    
+    path("", include(wagtail_urls)),
 ]
-
+urlpatterns += i18n_patterns(
+    path("", include(wagtail_urls)),
+)
 
 if settings.DEBUG:
     from django.conf.urls.static import static
