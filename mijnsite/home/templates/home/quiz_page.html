@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<h1>{{ page.title }}</h1>
+
+<div id="quiz">
+
+{% for block in page.questions %}
+<link rel="stylesheet" href="{% static 'css/quiz.css' %}">
+
+<div class="question"
+     data-correct="{{ block.value.correct_answer }}"
+     {% if not forloop.first %}style="display:none"{% endif %}>
+
+    <h2>{{ block.value.question }}</h2>
+
+    <button onclick="answer(this,'A')">{{ block.value.answer_a }}</button>
+    <button onclick="answer(this,'B')">{{ block.value.answer_b }}</button>
+    <button onclick="answer(this,'C')">{{ block.value.answer_c }}</button>
+    <button onclick="answer(this,'D')">{{ block.value.answer_d }}</button>
+
+    <p class="feedback"></p>
+
+    {% if block.value.explanation %}
+        <small class="explanation" style="display:none;">
+            {{ block.value.explanation }}
+        </small>
+    {% endif %}
+
+</div>
+<script src="{% static 'js/mijnsite.js' %}"></script>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

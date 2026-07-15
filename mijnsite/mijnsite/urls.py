@@ -31,6 +31,7 @@ urlpatterns = [
     path("checkout/", views.checkout, name="checkout"),
     path("betaling/start/", views.start_mollie_payment, name="start_mollie_payment"),
     path("payment/success/", views.payment_success, name="payment_success"),
+   
     
     path("", include(wagtail_urls)),
 ]

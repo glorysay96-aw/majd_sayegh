@@ -6,6 +6,9 @@ from wagtail.snippets.models import register_snippet
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.fields import StreamField
 from modelcluster.fields import ParentalManyToManyField
+from django.db import models
+from .blocks import QuizQuestionBlock
+
 
 
 class HomePage(Page):
@@ -160,3 +163,19 @@ class CartItem(models.Model):
 
     def totaal(self):
         return self.product.prijs * self.aantal
+
+
+
+class QuizPage(Page):
+
+    questions = StreamField(
+        [
+            ("question", QuizQuestionBlock()),
+        ],
+        use_json_field=True,
+        blank=True,
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel("questions"),
+    ]
