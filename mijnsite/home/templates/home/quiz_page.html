@@ -1,14 +1,18 @@
+
+
 {% extends "base.html" %}
 
-{% block content %}
 {% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/quiz.css' %}">
 
 <h1>{{ page.title }}</h1>
 
 <div id="quiz">
 
 {% for block in page.questions %}
-<link rel="stylesheet" href="{% static 'css/quiz.css' %}">
 
 <div class="question"
      data-correct="{{ block.value.correct_answer }}"
@@ -30,10 +34,11 @@
     {% endif %}
 
 </div>
-<script src="{% static 'js/mijnsite.js' %}"></script>
 
 {% endfor %}
 
 </div>
+
+<script src="{% static 'js/mijnsite.js' %}"></script>
 
 {% endblock %}

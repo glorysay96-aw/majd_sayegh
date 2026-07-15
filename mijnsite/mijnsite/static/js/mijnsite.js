@@ -4,8 +4,9 @@ let current = 0;
 let score = 0;
 
 function answer(button, choice) {
+    let question = button.closest(".question");
 
-    let question = button.parentElement;
+   
 
     if (question.dataset.done === "1")
         return;
@@ -37,22 +38,27 @@ function answer(button, choice) {
 
     setTimeout(function () {
 
-        question.style.display = "none";
+    question.style.display = "none";
 
-        current++;
+    current++;
 
-        if (current < questions.length) {
+    if (current < questions.length) {
 
-            questions[current].style.display = "block";
+        questions[current].style.display = "block";
 
-        } else {
+    } else {
 
-            document.getElementById("quiz").innerHTML =
-                "<h2>Klaar!</h2>" +
-                "<h3>Score: " + score + " / " + questions.length + "</h3>";
+        document.getElementById("quiz").innerHTML =
+            "<h2>Klaar!</h2>" +
+            "<h3>Score: " + score + " / " + questions.length + "</h3>" +
+            "<p>Je gaat over 30 seconden terug naar de homepage...</p>";
 
-        }
+        setTimeout(function () {
+            window.location.href = "/";
+        }, 30000);
 
-    }, 2000);
+    }
+
+}, 2000);
 
 }
