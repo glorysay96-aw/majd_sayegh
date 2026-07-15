@@ -71,11 +71,13 @@
         <input name="language" type="hidden" value="en">
         <button type="submit" class="hero-button">
             English
+         <img src="{% static 'images/en.png' %}" alt="English" class="flag-icon">    
         </button>
     {% else %}
         <input name="language" type="hidden" value="nl">
         <button type="submit" class="hero-button">
             Nederlands
+         <img src="{% static 'images/nl.png' %}" alt="Nederlands" class="flag-icon">     
         </button>
     {% endif %}
 </form>

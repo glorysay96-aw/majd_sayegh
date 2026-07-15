@@ -13,6 +13,12 @@ body {
     background: #f5f7fb;
     color: #111827;
 }
+.flag-icon {
+    width: 24px;
+    height: 18px;
+    display: block;
+}
+
 
 /* HERO SECTION */
 
